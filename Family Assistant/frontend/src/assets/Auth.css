@@ -1,0 +1,39 @@
+.auth-container {
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.auth-card {
+    background: #ffffff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.input-field {
+    border: 2px solid #74ebd5;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.icon {
+    margin-right: 8px;
+    color: #74ebd5;
+}
+
+.radio-button .form-check-label {
+    font-weight: bold;
+}
+
+.custom-btn {
+    background-color: #74ebd5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.custom-btn:hover {
+    background-color: #5ec5ba;
+    color: white;
+}

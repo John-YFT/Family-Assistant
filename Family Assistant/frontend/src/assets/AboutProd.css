@@ -1,0 +1,187 @@
+.feature-card {
+    background-color: #e9dede;
+    border: 2x solid #ddd;
+    min-height: 400px;
+  }
+  
+  .feature-icons img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .feature-icons p {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .feature-icons ul {
+    text-align: left;
+    padding-left: 20px;
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  .about-section1 {
+    background-image: url('./Фон\ о\ нас.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    padding: 50px 0;    
+  }
+  .custom-list {
+    list-style-type: disc; 
+    max-width: 70%; 
+    margin: 0 auto; 
+    padding: 0; 
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .custom-list li {
+    margin-bottom: 10px; 
+    color: #333; 
+  }
+  .features-section {
+    background-image: url('./Фон\ о\ нас.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    padding: 50px 0;
+  }
+  
+  .feature-card2 {
+    background-image: url('./Фон1.jpg'); 
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 450px;
+  }
+  
+  .feature-card2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-card2 img {
+    max-height: 150px;
+  }
+  .feature-card2 li {
+   padding-bottom: 20px;
+   font-size: 20px;
+  }
+  
+  .requirements-section {
+    border-radius: 10px;
+    padding: 30px;
+  }
+  
+  .requirements-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .requirements-section ul li {
+    font-size: 16px;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  
+  .requirements-section button {
+    background-color: #008080;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .requirements-section button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Блок с оценкой */
+.rating-display {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  padding: 20px;
+  color: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.rating-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.rating-number {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.rating-stars {
+  font-size: 30px;
+  color: gold;
+  margin-top: 5px;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Стили модального окна */
+.custom-modal-header {
+  background-color: #008080;
+  color: white;
+}
+
+.custom-modal-body {
+  text-align: center;
+  padding: 20px;
+}
+
+.custom-modal-footer {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.rating-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Кнопки-оценки */
+.rating-star {
+  background-color: rgba(255, 193, 7, 0.7);
+  border: none;
+  font-size: 22px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.rating-star:hover {
+  background-color: rgba(255, 193, 7, 1);
+  transform: scale(1.1);
+}
+
+.rating-star.selected {
+  background-color: #ff9800;
+  color: white;
+}

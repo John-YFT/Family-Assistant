@@ -1,0 +1,130 @@
+/* Общий стиль страницы */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+  }
+  
+  /* Секция героя */
+  .hero-section {
+    margin-top: 2%;
+    background: url('./Главная.jpg') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #333;
+    justify-content: flex-start; 
+  }
+  
+  /* Затемнение фона */
+  .hero-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+  }
+  
+  /* Контент */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    max-width: 600px;
+    padding: 20px;
+    margin-left: 160px;
+  }
+  
+  /* Заголовок */
+  .hero-content h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin: 0 0 20px 0;
+  }
+  
+  /* Кнопки */
+  .hero-buttons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .hero-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 2px solid #333;
+    border-radius: 15px;
+    background-color: transparent;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .hero-button:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  .info-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    margin-bottom: 100px;
+    gap: 50px; /* Расстояние между текстом и изображением */
+    background-color: #fdfdfd;
+  }
+  
+  .info-block-image img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .info-block-content {
+    max-width: 600px;
+  }
+  
+  .info-block-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .info-block-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #494343;
+  }
+  
+  .info-block-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .download-button {
+    display: inline-block;
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 22px;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .download-button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  
+  

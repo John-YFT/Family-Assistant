@@ -1,0 +1,43 @@
+.card {
+    margin-bottom: 10px;
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .card-body {
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+  
+  .card-body p {
+    margin-bottom: 0;
+  }
+  
+  .card-header:hover {
+    background-color: #0056b3;
+  }
+  .blinking {
+    animation: blink 1s infinite, glow 1s infinite;
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+  }

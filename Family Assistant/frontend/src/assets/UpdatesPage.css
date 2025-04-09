@@ -1,0 +1,44 @@
+.update-card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.update-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.update-card .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+.custom-download-btn {
+    background-color: #008080;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-download-btn:hover {
+    background-color: #006666;
+  }
+  
+  .custom-download-btn:disabled {
+    background-color: #7a9e9e;
+    cursor: not-allowed;
+  }
+  
+  .chart-container {
+    width: 80%;
+    max-width: 800px;
+    height: 400px;
+    margin: 30px auto;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
