@@ -4,6 +4,7 @@ import Loading from "./components/modals/Loading";
 import Layout from "./components/layout/Layout";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About.jsx";
+import Product from "./pages/product/Product";
 const App = () => {
   return (
     <BrowserRouter>
@@ -12,6 +13,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/product" element={<Product />} />
           </Routes>
         </Layout>
       </Suspense>
