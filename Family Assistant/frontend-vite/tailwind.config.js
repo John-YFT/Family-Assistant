@@ -10,6 +10,7 @@ export default {
       },
       fontFamily: {
         tenor: ["Tenor Sans", "sans-serif"],
+        ysabeau: ["Ysabeau Infant", "sans-serif"],
       },
     },
   },

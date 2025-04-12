@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Ysabeau Infant';
+  src: url('src/assets/font/YsabeauInfant-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 @layer base {
   html, 
   body, 

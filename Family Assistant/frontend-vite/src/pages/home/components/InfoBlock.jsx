@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 const InfoBlock = () => {
   return (
-    <div className="w-full h-[39vw] flex flex-col items-start justify-center relative">
+    <div className="w-full flex flex-col items-start justify-center relative bg-stroke
+    h-[39vw] ">
       <div
         className="absolute inset-0"
         style={{

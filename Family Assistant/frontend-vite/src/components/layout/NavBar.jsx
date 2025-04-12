@@ -68,11 +68,11 @@ const NavBar = () => {
         </div>
 
         <Link
-          to="/auth"
+          to="/login"
           className={
             "text-primary bg-white text-[1vw] py-[0.6vw] px-[2vw] rounded-[0.62vw] " +
             "transition-colors duration-300 ease-in-out hover:bg-gray-50 " +
-            (location.pathname === "/auth" ? activeButton : "")
+            (location.pathname === "/login" ? activeButton : "")
           }
         >
           Авторизация

@@ -13,6 +13,7 @@ import edit from "./edit.png";
 import family from "./family.png";
 import main0 from "./main_0.png";
 import main1 from "./main_1.jpg";
+import phone_colling from "./phone_colling.png";
 
 export {
   aboutProduct,
@@ -30,4 +31,5 @@ export {
   family,
   main0,
   main1,
+  phone_colling
 };
