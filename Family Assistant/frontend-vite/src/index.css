@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Tenor Sans';
+  src: url('src/assets/font/TenorSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@layer base {
+  html, 
+  body, 
+  #root {
+    @apply m-0 p-0 w-full h-full font-tenor;
+  }
+}
+
+

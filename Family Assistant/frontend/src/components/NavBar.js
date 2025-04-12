@@ -19,7 +19,7 @@ const NavBar = observer(() => {
         history('/')
     }
     return (
-      <Navbar collapseOnSelect className="bg-white">
+      <Navbar collapseOnSelect expand="lg" variant="dark" style={{ backgroundColor: 'black' }}>
       <Container fluid>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

@@ -1,0 +1,8 @@
+export const ADMIN_ROUTE = '/admin'
+export const LOGIN_ROUTE = '/login'
+export const REGISTRATION_ROUTE = '/registration'
+export const ABOUTAPPLICATION_ROUTE = '/about-app'
+export const UPDATES_ROUTE = '/about-product'
+export const DEL_DEVICE_ROUTE = '/del-device'
+export const ABOUT_US_ROUTE = '/about-us'
+export const MAIN_ROUTE = '/'
