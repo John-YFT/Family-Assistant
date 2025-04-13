@@ -37,12 +37,23 @@ const StarRating = ({ rating = 0 }) => {
 };
 
 const DownloadChart = ({ data = [] }) => {
+  console.log('DownloadChart получил сырые данные:', {
+    rawData: data,
+    isArray: Array.isArray(data),
+    type: typeof data
+  });
+
   const safeData = Array.isArray(data) ? data : [];
   
   const chartData = safeData.map(item => ({
     date: item?.date ? new Date(item.date).toLocaleDateString('ru-RU') : 'Нет даты',
     downloads: Number(item?.kolvo || 0)
   }));
+
+  console.log('DownloadChart преобразованные данные:', {
+    chartData,
+    length: chartData.length
+  });
 
   if (!chartData.length) {
     return (
@@ -78,15 +89,39 @@ const Requirements = () => {
     const fetchData = async () => {
       try {
         const ratingResponse = await $host.get("api/ratings/get-average-rating");
+        console.log('Сырой ответ рейтинга:', {
+          fullResponse: ratingResponse,
+          data: ratingResponse.data,
+          status: ratingResponse.status
+        });
+
         const { average } = ratingResponse?.data || {};
+        console.log('Извлеченный рейтинг:', {
+          average,
+          type: typeof average,
+          numberValue: Number(average)
+        });
+
         setRating(Number(average) || 0);
 
         const downloadResponse = await $host.get("api/dowloadCount/get-downloadcount");
+        console.log('Сырой ответ скачиваний:', {
+          fullResponse: downloadResponse,
+          data: downloadResponse.data,
+          status: downloadResponse.status,
+          isArray: Array.isArray(downloadResponse?.data)
+        });
+
         const downloadData = downloadResponse?.data;
         setDownloadStats(Array.isArray(downloadData) ? downloadData : []);
         setError(null);
       } catch (error) {
-        console.error("Ошибка при загрузке данных:", error);
+        console.error("Подробная ошибка при загрузке данных:", {
+          error,
+          message: error.message,
+          response: error.response,
+          stack: error.stack
+        });
         setError("Ошибка при загрузке данных");
         setRating(0);
         setDownloadStats([]);
@@ -104,14 +139,31 @@ const Requirements = () => {
     setTimeout(async () => {
       try {
         const today = new Date().toISOString().split("T")[0];
-        await $host.post("api/dowloadCount/incr-download", { date: today });
+        const incrementResponse = await $host.post("api/dowloadCount/incr-download", { date: today });
+        console.log('Ответ после инкремента:', {
+          response: incrementResponse,
+          status: incrementResponse.status,
+          data: incrementResponse.data
+        });
 
         const updatedData = await $host.get("api/dowloadCount/get-downloadcount");
+        console.log('Обновленные данные скачиваний:', {
+          fullResponse: updatedData,
+          data: updatedData.data,
+          status: updatedData.status,
+          isArray: Array.isArray(updatedData?.data)
+        });
+
         const newDownloadData = updatedData?.data;
         setDownloadStats(Array.isArray(newDownloadData) ? newDownloadData : []);
         setError(null);
       } catch (error) {
-        console.error("Ошибка при обновлении скачиваний:", error);
+        console.error("Подробная ошибка при обновлении скачиваний:", {
+          error,
+          message: error.message,
+          response: error.response,
+          stack: error.stack
+        });
         setError("Ошибка при обновлении данных");
       } finally {
         setIsDownloading(false);
