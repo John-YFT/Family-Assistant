@@ -28,26 +28,82 @@ const Login = observer(() => {
     setError(""); // Очищаем ошибку при изменении данных
   };
 
+  const validateForm = () => {
+    // Очищаем предыдущие ошибки
+    setError("");
+
+    // Проверка email
+    if (!formData.email.trim()) {
+      setError("Email обязателен для заполнения");
+      return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError("Введите корректный email адрес");
+      return false;
+    }
+
+    // Проверка пароля
+    if (!formData.password) {
+      setError("Пароль обязателен для заполнения");
+      return false;
+    }
+
+    if (formData.password.length < 6) {
+      setError("Пароль должен содержать минимум 6 символов");
+      return false;
+    }
+
+    // Дополнительные проверки для регистрации
+    if (!isLogin) {
+      // Проверка подтверждения пароля
+      if (formData.password !== formData.confirmPassword) {
+        setError("Пароли не совпадают");
+        return false;
+      }
+
+      // Проверка имени пользователя
+      if (!formData.fullName.trim()) {
+        setError("Имя пользователя обязательно для заполнения");
+        return false;
+      }
+
+      // Проверка телефона
+      if (!formData.phone.trim()) {
+        setError("Номер телефона обязателен для заполнения");
+        return false;
+      }
+
+      const phoneRegex = /^\+?[0-9]{10,12}$/;
+      if (!phoneRegex.test(formData.phone.replace(/\D/g, ''))) {
+        setError("Введите корректный номер телефона");
+        return false;
+      }
+
+      // Проверка пола
+      if (!formData.gender) {
+        setError("Пожалуйста, выберите пол");
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Проверяем валидацию перед отправкой
+    if (!validateForm()) {
+      return;
+    }
+
     try {
       let userData;
-
       if (isLogin) {
-        // Логин
         userData = await login(formData.email, formData.password);
       } else {
-        // Проверка паролей при регистрации
-        if (formData.password !== formData.confirmPassword) {
-          setError("Пароли не совпадают");
-          return;
-        }
-        // Проверка заполнения всех полей
-        if (!formData.fullName || !formData.phone || !formData.gender) {
-          setError("Пожалуйста, заполните все поля");
-          return;
-        }
-        // Регистрация
         userData = await registration(
           formData.email,
           formData.password,

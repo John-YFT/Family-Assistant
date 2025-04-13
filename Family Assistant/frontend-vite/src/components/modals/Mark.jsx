@@ -24,16 +24,16 @@ const Mark = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-[20px] w-[982px] flex flex-col items-center">
-        <div className="w-full flex justify-start items-center bg-primary rounded-b-[45px] py-[56px]">
-          <h1 className="font-tenor text-white text-[48px] ml-[70px]">
+      <div className="bg-white rounded-[1.04vw] w-[51.15vw] flex flex-col items-center">
+        <div className="w-full flex justify-start items-center bg-primary rounded-b-[2.34vw] py-[2.92vw]">
+          <h1 className="font-tenor text-white text-[2.5vw] ml-[3.65vw]">
             Оцените приложение
           </h1>
         </div>
 
         <div className="flex flex-col items-center">
           <p
-            className="font-tenor text-primary text-[40px] mt-[69px] mb-[70px] flex flex-col justify-center
+            className="font-tenor text-primary text-[2.08vw] mt-[3.59vw] mb-[3.65vw] flex flex-col justify-center
           items-center"
           >
             Как вам приложение?
@@ -41,14 +41,14 @@ const Mark = ({ onClose }) => {
             Выберите оценку:
           </p>
 
-          <div className="flex gap-[30px]">
+          <div className="flex gap-[1.56vw]">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
                 key={star}
                 onClick={() => handleStarClick(star)}
                 onMouseEnter={() => handleStarHover(star)}
                 onMouseLeave={handleStarLeave}
-                className="w-[80px] h-[80px] transition-transform hover:scale-110"
+                className="w-[4.17vw] h-[4.17vw] transition-transform hover:scale-110"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -65,13 +65,13 @@ const Mark = ({ onClose }) => {
             ))}
           </div>
 
-          <div className="w-[982px] h-[1px] bg-primary mb-[25px] mt-[52px]"></div>
+          <div className="w-[51.15vw] h-[0.05vw] bg-primary mb-[1.3vw] mt-[2.71vw]"></div>
 
-          <div className="flex w-full justify-end mr-[34px] mb-[27px]">
+          <div className="flex w-full justify-end mr-[1.77vw] mb-[1.41vw]">
             <button
               onClick={handleSubmit}
-              className="font-tenor text-stroke text-[30px] bg-primary 
-            px-[65px] py-[25px] rounded-[20px] hover:opacity-90 transition-opacity"
+              className="font-tenor text-stroke text-[1.56vw] bg-primary 
+            px-[3.39vw] py-[1.3vw] rounded-[1.04vw] hover:opacity-90 transition-opacity"
             >
               Отправить
             </button>
