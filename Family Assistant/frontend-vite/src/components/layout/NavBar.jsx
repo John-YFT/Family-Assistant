@@ -1,12 +1,24 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import { Context } from "../../main";
 
-const NavBar = () => {
+const NavBar = observer(() => {
+  const { user } = useContext(Context);
   const location = useLocation();
-  const activeButton =
-    "border-solid border-stroke border-[1px] rounded-[0.62vw]";
-  const navLinkStyle =
-    "hover:text-gray-300 py-[0.6vw] px-[2vw] transition-colors duration-300 ease-in-out";
+  const navigate = useNavigate();
+  
+  const activeButton = "border-solid border-stroke border-[1px] rounded-[0.62vw]";
+  const navLinkStyle = "hover:text-gray-300 py-[0.6vw] px-[2vw] transition-colors duration-300 ease-in-out";
+  const buttonStyle = "text-primary bg-white text-[1vw] py-[0.6vw] px-[2vw] rounded-[0.62vw] transition-colors duration-300 ease-in-out hover:bg-gray-50";
+
+  const logOut = () => {
+    user.setUser({});
+    user.setIsAuth(false);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/');
+  };
 
   return (
     <nav className="bg-primary text-secondary">
@@ -67,19 +79,36 @@ const NavBar = () => {
           </div>
         </div>
 
-        <Link
-          to="/login"
-          className={
-            "text-primary bg-white text-[1vw] py-[0.6vw] px-[2vw] rounded-[0.62vw] " +
-            "transition-colors duration-300 ease-in-out hover:bg-gray-50 " +
-            (location.pathname === "/login" ? activeButton : "")
-          }
-        >
-          Авторизация
-        </Link>
+        <div className="flex items-center gap-[1vw]">
+          {user.isAuth ? (
+            <>
+              {user.user.role === 'ADMIN' && (
+                <Link
+                  to="/admin"
+                  className={buttonStyle + " " + (location.pathname === "/admin" ? activeButton : "")}
+                >
+                  Админ-панель
+                </Link>
+              )}
+              <button
+                onClick={logOut}
+                className={buttonStyle}
+              >
+                Выйти
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className={buttonStyle + " " + (location.pathname === "/login" ? activeButton : "")}
+            >
+              Авторизация
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );
-};
+});
 
 export default NavBar;

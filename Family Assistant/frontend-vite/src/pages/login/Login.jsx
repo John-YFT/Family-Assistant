@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import { Context } from "../../main";
+import { login, registration } from "../../http/userApi";
 
-const Login = () => {
+const Login = observer(() => {
+  const { user } = useContext(Context);
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,11 +25,44 @@ const Login = () => {
       ...prev,
       [name]: value,
     }));
+    setError(""); // Очищаем ошибку при изменении данных
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Здесь будет логика авторизации/регистрации
+    try {
+      let userData;
+
+      if (isLogin) {
+        // Логин
+        userData = await login(formData.email, formData.password);
+      } else {
+        // Проверка паролей при регистрации
+        if (formData.password !== formData.confirmPassword) {
+          setError("Пароли не совпадают");
+          return;
+        }
+        // Проверка заполнения всех полей
+        if (!formData.fullName || !formData.phone || !formData.gender) {
+          setError("Пожалуйста, заполните все поля");
+          return;
+        }
+        // Регистрация
+        userData = await registration(
+          formData.email,
+          formData.password,
+          formData.fullName,
+          formData.phone,
+          formData.gender
+        );
+      }
+
+      user.setUser(userData);
+      user.setIsAuth(true);
+      navigate("/");
+    } catch (e) {
+      setError(e.response?.data?.message || "Произошла ошибка");
+    }
   };
 
   return (
@@ -37,6 +77,12 @@ const Login = () => {
         <h2 className="font-tenor text-stroke text-[2.5vw] mb-[2.08vw] text-center">
           {isLogin ? "Авторизация" : "Регистрация"}
         </h2>
+
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+            {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-[1.56vw]">
           {!isLogin && (
@@ -178,14 +224,25 @@ const Login = () => {
         </p>
         <button
           type="button"
-          onClick={() => setIsLogin(!isLogin)}
-          className="font-tenor text-primary text-[1.25vw]  underline hover:text-primary/80 transition-colors"
+          onClick={() => {
+            setIsLogin(!isLogin);
+            setError("");
+            setFormData({
+              email: "",
+              password: "",
+              confirmPassword: "",
+              fullName: "",
+              phone: "",
+              gender: "",
+            });
+          }}
+          className="font-tenor text-primary text-[1.25vw] underline hover:text-primary/80 transition-colors"
         >
           {isLogin ? "Зарегистрируйтесь!" : "Войдите!"}
         </button>
       </div>
     </div>
   );
-};
+});
 
 export default Login;
