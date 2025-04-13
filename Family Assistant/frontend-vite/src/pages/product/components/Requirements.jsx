@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Mark from "../../../components/modals/Mark";
+import { $host } from "../../../http";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const StarRating = ({ rating }) => {
+const StarRating = ({ rating = 0 }) => {
   const stars = [0, 1, 2, 3, 4];
+  console.log('StarRating получил рейтинг:', rating);
   
   return (
     <div className="flex gap-[0.89vw] mt-[1.04vw]">
@@ -32,8 +37,84 @@ const StarRating = ({ rating }) => {
   );
 };
 
+const DownloadChart = ({ data }) => {
+  console.log('DownloadChart получил данные:', data);
+  const chartData = data.map(item => ({
+    date: new Date(item.date).toLocaleDateString('ru-RU'),
+    downloads: Number(item.kolvo)
+  }));
+
+  return (
+    <div className="w-full h-[20vw] mt-[2vw]">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={chartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis tickFormatter={(value) => Math.round(value)} />
+          <Tooltip formatter={(value) => [Math.round(value), "Скачиваний"]} />
+          <Line type="monotone" dataKey="downloads" stroke="#781C69" strokeWidth={2} />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
+
 const Requirements = () => {
-  const rating = 2.4; // Текущий рейтинг
+  const [rating, setRating] = useState(0);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [showRatingModal, setShowRatingModal] = useState(false);
+  const [downloadStats, setDownloadStats] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const ratingResponse = await $host.get("api/ratings/get-average-rating");
+        console.log('Получены данные рейтинга:', ratingResponse.data);
+        
+        const { average } = ratingResponse.data;
+        if (average) {
+          const numericRating = Number(average);
+          console.log('Преобразованный рейтинг:', numericRating);
+          setRating(numericRating);
+        } else {
+          console.log('Нет данных о среднем рейтинге');
+          setRating(0);
+        }
+
+        const downloadResponse = await $host.get("api/dowloadCount/get-downloadcount");
+        console.log('Получены данные о скачиваниях:', downloadResponse.data);
+        setDownloadStats(downloadResponse.data);
+      } catch (error) {
+        console.error("Ошибка при загрузке данных:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleDownload = async () => {
+    setIsDownloading(true);
+
+    setTimeout(async () => {
+      setIsDownloading(false);
+      setShowRatingModal(true);
+
+      try {
+        const today = new Date().toISOString().split("T")[0];
+        await $host.post("api/dowloadCount/incr-download", { date: today });
+
+        const updatedData = await $host.get("api/dowloadCount/get-downloadcount");
+        console.log('Обновленные данные о скачиваниях:', updatedData.data);
+        setDownloadStats(updatedData.data);
+      } catch (error) {
+        console.error("Ошибка при обновлении скачиваний:", error);
+      }
+    }, 5000);
+  };
+
+  const handleCloseRatingModal = () => {
+    setShowRatingModal(false);
+  };
 
   return (
     <div
@@ -69,12 +150,23 @@ const Requirements = () => {
             <li className="text-[1.82vw]">Встроенная память: от 16 ГБ</li>
           </ul>
           <button
+            onClick={handleDownload}
+            disabled={isDownloading}
             className="text-stroke bg-primary text-[1.56vw] font-tenor rounded-[0.63vw]
             mt-[5.1vw]
             px-[1.82vw]
-            py-[1.15vw]"
+            py-[1.15vw]
+            flex items-center gap-[0.52vw]
+            disabled:opacity-70"
           >
-            Скачать приложение "Family Assistant"
+            {isDownloading ? (
+              <>
+                <div className="w-[1.04vw] h-[1.04vw] border-2 border-stroke border-t-transparent rounded-full animate-spin"></div>
+                Загрузка...
+              </>
+            ) : (
+              'Скачать приложение "Family Assistant"'
+            )}
           </button>
         </div>
         <div
@@ -93,6 +185,15 @@ const Requirements = () => {
           <StarRating rating={rating} />
         </div>
       </div>
+
+      <div className="w-full mt-[3vw]">
+        <h3 className="font-tenor text-primary text-[2vw] mb-[1vw]">
+          Статистика скачиваний
+        </h3>
+        <DownloadChart data={downloadStats} />
+      </div>
+
+      {showRatingModal && <Mark onClose={handleCloseRatingModal} />}
     </div>
   );
 };

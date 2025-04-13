@@ -9,6 +9,7 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About.jsx";
 import Product from "./pages/product/Product";
 import Login from "./pages/login/Login";
+import Admin from "./pages/admin/Admin";
 import Thanks from "./components/modals/Thanks";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -50,6 +51,14 @@ const App = observer(() => {
             <Route path="/about" element={<About />} />
             <Route path="/product" element={<Product />} />
             <Route path="/login" element={<Login />} />
+            <Route 
+              path="/admin" 
+              element={
+                user.isAuth && user.user?.role === 'ADMIN' 
+                  ? <Admin /> 
+                  : <Home />
+              } 
+            />
           </Routes>
           <ScrollToTop />
         </Layout>

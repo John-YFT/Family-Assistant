@@ -2,7 +2,6 @@ import React, {createContext, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import UserStore from './store/UserStore';
-import './index.css';
 
 export const Context = createContext()
 

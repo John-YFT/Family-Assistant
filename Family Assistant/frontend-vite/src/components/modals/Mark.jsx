@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { $host } from "../../http";
 
 const Mark = ({ onClose }) => {
   const [rating, setRating] = useState(0);
@@ -16,10 +17,19 @@ const Mark = ({ onClose }) => {
     setHoveredRating(0);
   };
 
-  const handleSubmit = () => {
-    // Здесь можно добавить логику отправки оценки
-    console.log("Отправлена оценка:", rating);
-    onClose();
+  const handleSubmit = async () => {
+    if (!rating) return;
+
+    try {
+      await $host.post("api/ratings/submit-rating", { rating });
+      
+      // Обновляем средний рейтинг (это обновит отображение в родительском компоненте)
+      const ratingResponse = await $host.get("api/ratings/get-average-rating");
+      console.log("Отправлена оценка:", rating);
+      onClose();
+    } catch (error) {
+      console.error("Ошибка при отправке оценки:", error);
+    }
   };
 
   return (
@@ -70,8 +80,11 @@ const Mark = ({ onClose }) => {
           <div className="flex w-full justify-end mr-[1.77vw] mb-[1.41vw]">
             <button
               onClick={handleSubmit}
+              disabled={!rating}
               className="font-tenor text-stroke text-[1.56vw] bg-primary 
-            px-[3.39vw] py-[1.3vw] rounded-[1.04vw] hover:opacity-90 transition-opacity"
+              px-[3.39vw] py-[1.3vw] rounded-[1.04vw] 
+              hover:opacity-90 transition-opacity
+              disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Отправить
             </button>
