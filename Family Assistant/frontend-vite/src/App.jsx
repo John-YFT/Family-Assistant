@@ -10,7 +10,6 @@ import About from "./pages/about/About.jsx";
 import Product from "./pages/product/Product";
 import Login from "./pages/login/Login";
 import Admin from "./pages/admin/Admin";
-import Thanks from "./components/modals/Thanks";
 import ScrollToTop from "./components/ScrollToTop";
 
 const App = observer(() => {
@@ -21,15 +20,15 @@ const App = observer(() => {
     // Проверяем авторизацию при загрузке
     const checkAuth = async () => {
       try {
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem("token")) {
           const userData = await check();
           user.setUser(userData);
           user.setIsAuth(true);
         }
       } catch (e) {
-        console.error('Ошибка проверки авторизации:', e);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+        console.error("Ошибка проверки авторизации:", e);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
       } finally {
         setLoading(false);
       }
@@ -51,13 +50,15 @@ const App = observer(() => {
             <Route path="/about" element={<About />} />
             <Route path="/product" element={<Product />} />
             <Route path="/login" element={<Login />} />
-            <Route 
-              path="/admin" 
+            <Route
+              path="/admin"
               element={
-                user.isAuth && user.user?.role === 'ADMIN' 
-                  ? <Admin /> 
-                  : <Home />
-              } 
+                user.isAuth && user.user?.role === "ADMIN" ? (
+                  <Admin />
+                ) : (
+                  <Home />
+                )
+              }
             />
           </Routes>
           <ScrollToTop />
