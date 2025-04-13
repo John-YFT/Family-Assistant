@@ -5,17 +5,17 @@ const Pluses = () => {
     <div
       className="w-full flex flex-col items-start justify-start bg-primary
       border-b-[1px]
-  px-[170px]
-  pt-[112px]
-  pb-[89px]
-  rounded-bl-[7.5vw] 
-  rounded-br-[7.5vw]"
+      px-[8.85vw]
+      pt-[5.83vw]
+      pb-[4.64vw]
+      rounded-bl-[7.5vw] 
+      rounded-br-[7.5vw]"
     >
-      <h2 className="font-tenor text-stroke text-[48px] mb-[48px]">
+      <h2 className="font-tenor text-stroke text-[2.5vw] mb-[2.5vw]">
         Плюсы нашего приложения, от которых сложно отказаться
       </h2>
 
-      <ul className="list-disc pl-[1.04vw] text-[35px] max-w-[1586px] font-normal font-ysabeau">
+      <ul className="list-disc pl-[1.04vw] text-[1.82vw] max-w-[82.6vw] font-normal font-ysabeau">
         <li className="font-tenor text-stroke ">
           Удобство и интуитивность - наше приложение простое, понятное и легкое
           для всех возрастов

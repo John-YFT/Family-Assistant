@@ -3,6 +3,7 @@ import Functions from "./components/Functions";
 import Pluses from "./components/Pluses";
 import Details from "./components/Details";
 import Requirements from "./components/Requirements";
+
 const Product = () => {
   return (
     <div className="w-full bg-primary">
