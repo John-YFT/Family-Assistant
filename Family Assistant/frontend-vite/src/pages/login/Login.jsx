@@ -124,27 +124,27 @@ const Login = observer(() => {
   return (
     <div
       className="w-full flex flex-col items-center justify-start bg-stroke
-      pt-[3vw]
-      pb-[3vw]
-      rounded-bl-[7.5vw] 
-      rounded-br-[7.5vw] "
+      pt-[8vw] md:pt-[5vw] xl:pt-[3vw]
+      pb-[8vw] md:pb-[5vw] xl:pb-[3vw]
+      rounded-bl-[15vw] md:rounded-bl-[10vw] xl:rounded-bl-[7.5vw] 
+      rounded-br-[15vw] md:rounded-br-[10vw] xl:rounded-br-[7.5vw]"
     >
-      <div className="w-[31.25vw] bg-primary rounded-[1.04vw] p-[2.08vw] border-[1px] border-primary">
-        <h2 className="font-tenor text-stroke text-[2.5vw] mb-[2.08vw] text-center">
+      <div className="w-[90vw] md:w-[60vw] xl:w-[31.25vw] bg-primary rounded-[3vw] md:rounded-[1.5vw] xl:rounded-[1.04vw] p-[6vw] md:p-[4vw] xl:p-[2.08vw] border-[1px] border-primary">
+        <h2 className="font-tenor text-stroke text-[5vw] md:text-[3.5vw] xl:text-[2.5vw] mb-[4vw] md:mb-[3vw] xl:mb-[2.08vw] text-center">
           {isLogin ? "Авторизация" : "Регистрация"}
         </h2>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+          <div className="bg-red-100 border border-red-400 text-red-700 px-[4vw] md:px-[2vw] py-[3vw] md:py-[1.5vw] rounded-[2vw] md:rounded-[1vw] relative mb-[4vw] md:mb-[2vw] text-[3.5vw] md:text-[2vw] xl:text-[1.04vw]">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-[1.56vw]">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-[4vw] md:gap-[2vw] xl:gap-[1.56vw]">
           {!isLogin && (
             <>
-              <div className="flex flex-col gap-[0.52vw]">
-                <label className="font-ysabeau text-stroke text-[1.25vw]">
+              <div className="flex flex-col gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw]">
+                <label className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.25vw]">
                   Имя пользователя
                 </label>
                 <input
@@ -153,12 +153,12 @@ const Login = observer(() => {
                   placeholder="Введите логин..."
                   value={formData.fullName}
                   onChange={handleInputChange}
-                  className="w-full bg-stroke rounded-[0.52vw] p-[0.78vw] text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
+                  className="w-full bg-stroke rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.52vw] p-[3vw] md:p-[1.5vw] xl:p-[0.78vw] text-[3.5vw] md:text-[2vw] xl:text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
                 />
               </div>
 
-              <div className="flex flex-col gap-[0.52vw]">
-                <label className="font-ysabeau text-stroke text-[1.25vw]">
+              <div className="flex flex-col gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw]">
+                <label className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.25vw]">
                   Номер телефона
                 </label>
                 <input
@@ -167,38 +167,38 @@ const Login = observer(() => {
                   placeholder="Введите ваш номер телефона..."
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full bg-stroke rounded-[0.52vw] p-[0.78vw] text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
+                  className="w-full bg-stroke rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.52vw] p-[3vw] md:p-[1.5vw] xl:p-[0.78vw] text-[3.5vw] md:text-[2vw] xl:text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
                 />
               </div>
 
-              <div className="flex flex-col gap-[0.52vw]">
-                <label className="font-ysabeau text-stroke text-[1.25vw]">
+              <div className="flex flex-col gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw]">
+                <label className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.25vw]">
                   Пол
                 </label>
-                <div className="flex gap-[1.56vw]">
-                  <label className="flex items-center gap-[0.52vw] cursor-pointer">
+                <div className="flex gap-[4vw] md:gap-[2vw] xl:gap-[1.56vw]">
+                  <label className="flex items-center gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw] cursor-pointer">
                     <input
                       type="radio"
                       name="gender"
                       value="Мужской"
                       checked={formData.gender === "Мужской"}
                       onChange={handleInputChange}
-                      className="w-[1.04vw] h-[1.04vw] accent-primary"
+                      className="w-[4vw] h-[4vw] md:w-[2vw] md:h-[2vw] xl:w-[1.04vw] xl:h-[1.04vw] accent-primary"
                     />
-                    <span className="font-ysabeau text-stroke text-[1.04vw]">
+                    <span className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.04vw]">
                       Мужской
                     </span>
                   </label>
-                  <label className="flex items-center gap-[0.52vw] cursor-pointer">
+                  <label className="flex items-center gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw] cursor-pointer">
                     <input
                       type="radio"
                       name="gender"
                       value="Женский"
                       checked={formData.gender === "Женский"}
                       onChange={handleInputChange}
-                      className="w-[1.04vw] h-[1.04vw] accent-primary"
+                      className="w-[4vw] h-[4vw] md:w-[2vw] md:h-[2vw] xl:w-[1.04vw] xl:h-[1.04vw] accent-primary"
                     />
-                    <span className="font-ysabeau text-stroke text-[1.04vw]">
+                    <span className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.04vw]">
                       Женский
                     </span>
                   </label>
@@ -207,8 +207,8 @@ const Login = observer(() => {
             </>
           )}
 
-          <div className="flex flex-col gap-[0.52vw]">
-            <label className="font-ysabeau text-stroke text-[1.25vw]">
+          <div className="flex flex-col gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw]">
+            <label className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.25vw]">
               Email
             </label>
             <input
@@ -217,12 +217,12 @@ const Login = observer(() => {
               placeholder="Введите ваш email..."
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full bg-stroke rounded-[0.52vw] p-[0.78vw] text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
+              className="w-full bg-stroke rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.52vw] p-[3vw] md:p-[1.5vw] xl:p-[0.78vw] text-[3.5vw] md:text-[2vw] xl:text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
             />
           </div>
 
-          <div className="flex flex-col gap-[0.52vw]">
-            <label className="font-ysabeau text-stroke text-[1.25vw]">
+          <div className="flex flex-col gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw]">
+            <label className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.25vw]">
               Пароль
             </label>
             <input
@@ -231,13 +231,13 @@ const Login = observer(() => {
               placeholder="Введите ваш пароль..."
               value={formData.password}
               onChange={handleInputChange}
-              className="w-full bg-stroke rounded-[0.52vw] p-[0.78vw] text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
+              className="w-full bg-stroke rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.52vw] p-[3vw] md:p-[1.5vw] xl:p-[0.78vw] text-[3.5vw] md:text-[2vw] xl:text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
             />
           </div>
 
           {!isLogin && (
-            <div className="flex flex-col gap-[0.52vw]">
-              <label className="font-ysabeau text-stroke text-[1.25vw]">
+            <div className="flex flex-col gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw]">
+              <label className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.25vw]">
                 Подтверждение пароля
               </label>
               <input
@@ -246,27 +246,27 @@ const Login = observer(() => {
                 placeholder="Повторите ваш пароль..."
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                className="w-full bg-stroke rounded-[0.52vw] p-[0.78vw] text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
+                className="w-full bg-stroke rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.52vw] p-[3vw] md:p-[1.5vw] xl:p-[0.78vw] text-[3.5vw] md:text-[2vw] xl:text-[1.04vw] font-ysabeau border-[1px] border-primary text-primary placeholder:text-primary/50"
               />
             </div>
           )}
 
-          <label className="flex items-center gap-[0.52vw] cursor-pointer">
+          <label className="flex items-center gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw] cursor-pointer">
             <input
               type="checkbox"
               checked={showPassword}
               onChange={() => setShowPassword(!showPassword)}
-              className="w-[1.04vw] h-[1.04vw] accent-primary"
+              className="w-[4vw] h-[4vw] md:w-[2vw] md:h-[2vw] xl:w-[1.04vw] xl:h-[1.04vw] accent-primary"
             />
-            <span className="font-ysabeau text-stroke text-[1.04vw]">
+            <span className="font-ysabeau text-stroke text-[3.5vw] md:text-[2vw] xl:text-[1.04vw]">
               Показать пароль
             </span>
           </label>
 
-          <div className="flex flex-col gap-[1.04vw] mt-[1.04vw]">
+          <div className="flex flex-col gap-[3vw] md:gap-[2vw] xl:gap-[1.04vw] mt-[4vw] md:mt-[2vw] xl:mt-[1.04vw]">
             <button
               type="submit"
-              className="w-full bg-primary text-stroke font-tenor text-[1.25vw] rounded-[0.52vw] py-[0.78vw] border-[1px] border-stroke hover:bg-primary/90 transition-colors"
+              className="w-full bg-primary text-stroke font-tenor text-[3.5vw] md:text-[2vw] xl:text-[1.25vw] rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.52vw] py-[3vw] md:py-[1.5vw] xl:py-[0.78vw] border-[1px] border-stroke hover:bg-primary/90 transition-colors"
             >
               {isLogin ? "Войти" : "Зарегистрироваться"}
             </button>
@@ -274,8 +274,8 @@ const Login = observer(() => {
         </form>
       </div>
 
-      <div className="flex items-center gap-[0.52vw] mt-[2vw]">
-        <p className="font-ysabeau text-primary text-[1.25vw]">
+      <div className="flex items-center gap-[2vw] md:gap-[1vw] xl:gap-[0.52vw] mt-[4vw] md:mt-[3vw] xl:mt-[2vw]">
+        <p className="font-ysabeau text-primary text-[3.5vw] md:text-[2vw] xl:text-[1.25vw]">
           {isLogin ? "Нет аккаунта? " : "Есть аккаунт? "}
         </p>
         <button
@@ -292,7 +292,7 @@ const Login = observer(() => {
               gender: "",
             });
           }}
-          className="font-tenor text-primary text-[1.25vw] underline hover:text-primary/80 transition-colors"
+          className="font-tenor text-primary text-[3.5vw] md:text-[2vw] xl:text-[1.25vw] underline hover:text-primary/80 transition-colors"
         >
           {isLogin ? "Зарегистрируйтесь!" : "Войдите!"}
         </button>

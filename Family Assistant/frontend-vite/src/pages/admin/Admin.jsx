@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container } from "react-bootstrap";
 import { $host } from "../../http";
 
 const Admin = () => {
@@ -22,83 +21,67 @@ const Admin = () => {
     }, [showFeedback]);
 
     return (
-        <Container style={{ maxWidth: '80vw', margin: '4vw auto' }}>
+        <div className="w-[95vw] md:w-[90vw] xl:w-[80vw] mx-auto my-[8vw] md:my-[6vw] xl:my-[4vw]">
             {!showFeedback ? (
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button 
+                <div className="flex justify-center">
+                    <button 
                         onClick={() => setShowFeedback(true)}
-                        style={{
-                            background: '#DAA520',
-                            border: 'none',
-                            padding: '1vw 2vw',
-                            fontSize: '1.2vw',
-                            borderRadius: '0.5vw',
-                            color: 'white',
-                            transition: 'all 0.3s ease'
-                        }}
-                        onMouseOver={(e) => e.target.style.background = '#B8860B'}
-                        onMouseOut={(e) => e.target.style.background = '#DAA520'}
+                        className="bg-[#DAA520] hover:bg-[#B8860B] transition-all duration-300
+                        px-[6vw] md:px-[4vw] xl:px-[2vw] 
+                        py-[3vw] md:py-[2vw] xl:py-[1vw]
+                        text-[4vw] md:text-[2vw] xl:text-[1.2vw]
+                        rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.5vw]
+                        text-white"
                     >
                         Обратная связь
-                    </Button>
+                    </button>
                 </div>
             ) : (
-                <div style={{
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    borderRadius: '1vw',
-                    padding: '2vw',
-                    boxShadow: '0 0.2vw 1vw rgba(0, 0, 0, 0.1)'
-                }}>
-                    <h1 style={{ 
-                        textAlign: 'center', 
-                        marginBottom: '2vw',
-                        fontSize: '2.5vw',
-                        color: '#4B0082'
-                    }}>
+                <div className="bg-white/90 
+                    rounded-[3vw] md:rounded-[2vw] xl:rounded-[1vw]
+                    p-[6vw] md:p-[4vw] xl:p-[2vw]
+                    shadow-[0_0.2vw_1vw_rgba(0,0,0,0.1)]"
+                >
+                    <h1 className="text-center mb-[4vw] md:mb-[3vw] xl:mb-[2vw]
+                        text-[6vw] md:text-[4vw] xl:text-[2.5vw]
+                        text-[#4B0082]"
+                    >
                         Обратная связь с пользователями
                     </h1>
-                    <h3 style={{ 
-                        textAlign: 'center', 
-                        marginBottom: '2vw',
-                        fontSize: '1.5vw',
-                        color: '#800080'
-                    }}>
+                    <h3 className="text-center mb-[4vw] md:mb-[3vw] xl:mb-[2vw]
+                        text-[4vw] md:text-[2.5vw] xl:text-[1.5vw]
+                        text-[#800080]"
+                    >
                         Обязательно исправить и изучить каждый вопрос!
                     </h3>
                     
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2vw' }}>
+                    <div className="flex flex-col gap-[4vw] md:gap-[3vw] xl:gap-[2vw]">
                         {feedbacks.map((feedback) => (
                             <div 
                                 key={feedback.id} 
-                                style={{
-                                    background: 'rgba(255, 255, 255, 0.95)',
-                                    borderRadius: '0.8vw',
-                                    padding: '1.5vw',
-                                    boxShadow: '0 0.2vw 0.5vw rgba(75, 0, 130, 0.1)',
-                                    transition: 'all 0.3s ease',
-                                    border: '0.1vw solid #E6E6FA'
-                                }}
+                                className="bg-white/95 
+                                    rounded-[2vw] md:rounded-[1.5vw] xl:rounded-[0.8vw]
+                                    p-[4vw] md:p-[2.5vw] xl:p-[1.5vw]
+                                    shadow-[0_0.2vw_0.5vw_rgba(75,0,130,0.1)]
+                                    transition-all duration-300
+                                    border border-[#E6E6FA]"
                             >
-                                <h4 style={{ 
-                                    fontSize: '1.8vw',
-                                    marginBottom: '1vw',
-                                    color: '#4B0082'
-                                }}>
+                                <h4 className="text-[4.5vw] md:text-[3vw] xl:text-[1.8vw]
+                                    mb-[3vw] md:mb-[2vw] xl:mb-[1vw]
+                                    text-[#4B0082]"
+                                >
                                     {feedback.user.fullName}
                                 </h4>
-                                <div style={{ fontSize: '1.2vw' }}>
-                                    <p style={{ color: '#800080' }}>Тип проблемы: {feedback.role}</p>
-                                    <p style={{ color: '#800080' }}>Описание: {feedback.text}</p>
-                                    <div style={{ marginTop: '1vw' }}>
+                                <div className="text-[3.5vw] md:text-[2vw] xl:text-[1.2vw]">
+                                    <p className="text-[#800080]">Тип проблемы: {feedback.role}</p>
+                                    <p className="text-[#800080]">Описание: {feedback.text}</p>
+                                    <div className="mt-[3vw] md:mt-[2vw] xl:mt-[1vw]">
                                         <p>
                                             Email: 
                                             <a 
                                                 href={`mailto:${feedback.user.email}`}
-                                                style={{
-                                                    marginLeft: '0.5vw',
-                                                    color: '#DAA520',
-                                                    textDecoration: 'none'
-                                                }}
+                                                className="ml-[2vw] md:ml-[1vw] xl:ml-[0.5vw]
+                                                text-[#DAA520] no-underline hover:underline"
                                             >
                                                 {feedback.user.email}
                                             </a>
@@ -107,11 +90,8 @@ const Admin = () => {
                                             Телефон: 
                                             <a 
                                                 href={`tel:${feedback.user.phone}`}
-                                                style={{
-                                                    marginLeft: '0.5vw',
-                                                    color: '#DAA520',
-                                                    textDecoration: 'none'
-                                                }}
+                                                className="ml-[2vw] md:ml-[1vw] xl:ml-[0.5vw]
+                                                text-[#DAA520] no-underline hover:underline"
                                             >
                                                 {feedback.user.phone}
                                             </a>
@@ -122,27 +102,22 @@ const Admin = () => {
                         ))}
                     </div>
                     
-                    <div style={{ marginTop: '3vw', textAlign: 'center' }}>
-                        <Button 
+                    <div className="mt-[6vw] md:mt-[4vw] xl:mt-[3vw] text-center">
+                        <button 
                             onClick={() => setShowFeedback(false)}
-                            style={{
-                                background: '#DAA520',
-                                border: 'none',
-                                padding: '0.8vw 2vw',
-                                fontSize: '1.2vw',
-                                borderRadius: '0.5vw',
-                                color: 'white',
-                                transition: 'all 0.3s ease'
-                            }}
-                            onMouseOver={(e) => e.target.style.background = '#B8860B'}
-                            onMouseOut={(e) => e.target.style.background = '#DAA520'}
+                            className="bg-[#DAA520] hover:bg-[#B8860B] transition-all duration-300
+                            px-[6vw] md:px-[4vw] xl:px-[2vw] 
+                            py-[3vw] md:py-[1.5vw] xl:py-[0.8vw]
+                            text-[4vw] md:text-[2vw] xl:text-[1.2vw]
+                            rounded-[2vw] md:rounded-[1vw] xl:rounded-[0.5vw]
+                            text-white"
                         >
                             Назад
-                        </Button>
+                        </button>
                     </div>
                 </div>
             )}
-        </Container>
+        </div>
     );
 }
 
