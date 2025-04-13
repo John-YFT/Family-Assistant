@@ -27,26 +27,26 @@ const Functions = () => {
         <div className="flex flex-col border-[1px] border-primary rounded-[3vw] md:rounded-[1.5vw] xl:rounded-[1vw] w-full md:w-[30vw] xl:w-[22.66vw]">
           <div className="w-full bg-primary text-stroke flex items-center justify-center
             border-[1px] border-primary
-            h-[12vw] md:h-[8vw] xl:h-[5.16vw]
+            h-[12vw] md:h-[12vw] xl:h-[5.16vw]
             rounded-t-[3vw] md:rounded-t-[1.5vw] xl:rounded-t-[1vw]
             shadow-[0_0.21vw_0.21vw_0_rgba(0,0,0,0.25)]"
           >
-            <p className="font-tenor text-center text-[4vw] md:text-[2.5vw] xl:text-[1.2vw]">
+            <p className="font-tenor text-center text-[4vw] md:text-[3vw] xl:text-[1.2vw]">
               Задачи-мероприятия-пожелания
             </p>
           </div>
-          <div className="flex flex-col h-[60vw] md:h-[40vw] xl:h-[25.68vw]">
-            <div className="flex-1 flex flex-col items-center justify-center border-b-[1px] border-primary">
-              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.5vw] xl:text-[1.56vw]">Создание</p>
-              <img src={creating} alt="" className="w-[5vw] md:w-[3vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1vw] xl:mt-[0.52vw]" />
+          <div className="flex flex-col h-[60vw] md:h-[60vw] xl:h-[25.68vw]">
+            <div className="flex-1 flex flex-col items-center justify-center border-b-[1px] border-primary md:h-[25vw]">
+              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.3vw] xl:text-[1.56vw]">Создание</p>
+              <img src={creating} alt="" className="w-[5vw] md:w-[4vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1.5vw] xl:mt-[0.52vw]" />
             </div>
             <div className="flex-1 flex flex-col items-center justify-center border-b-[1px] border-primary">
-              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.5vw] xl:text-[1.56vw]">Редактирование</p>
-              <img src={edit} alt="" className="w-[5vw] md:w-[3vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1vw] xl:mt-[0.52vw]" />
+              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.7vw] xl:text-[1.56vw]">Редактирование</p>
+              <img src={edit} alt="" className="w-[5vw] md:w-[4vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1.5vw] xl:mt-[0.52vw]" />
             </div>
             <div className="flex-1 flex flex-col items-center justify-center">
-              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.5vw] xl:text-[1.56vw]">Удаление</p>
-              <img src={deleteIcon} alt="" className="w-[5vw] md:w-[3vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1vw] xl:mt-[0.52vw]" />
+              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.7vw] xl:text-[1.56vw]">Удаление</p>
+              <img src={deleteIcon} alt="" className="w-[5vw] md:w-[4vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1.5vw] xl:mt-[0.52vw]" />
             </div>
           </div>
         </div>
@@ -54,33 +54,33 @@ const Functions = () => {
         <div className="flex flex-col border-[1px] border-primary rounded-[3vw] md:rounded-[1.5vw] xl:rounded-[1vw] w-full md:w-[30vw] xl:w-[22.66vw]">
           <div className="w-full bg-primary text-stroke flex items-center justify-center
             border-[1px] border-primary
-            h-[12vw] md:h-[8vw] xl:h-[5.16vw]
+            h-[12vw] md:h-[12vw] xl:h-[5.16vw]
             rounded-t-[3vw] md:rounded-t-[1.5vw] xl:rounded-t-[1vw]
             shadow-[0_0.21vw_0.21vw_0_rgba(0,0,0,0.25)]"
           >
-            <p className="font-tenor text-center text-[4vw] md:text-[2.5vw] xl:text-[1.2vw]">
+            <p className="font-tenor text-center text-[4vw] md:text-[3vw] xl:text-[1.2vw]">
               Личный кабинет
             </p>
           </div>
-          <div className="flex flex-col h-[60vw] md:h-[40vw] xl:h-[25.68vw]">
-            <div className="flex-1 flex flex-col items-center justify-center border-b-[1px] border-primary">
-              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.5vw] xl:text-[1.56vw] text-center">
+          <div className="flex flex-col h-[60vw] md:h-[60vw] xl:h-[25.68vw]">
+            <div className="flex-1 flex flex-col items-center justify-center border-b-[1px] border-primary md:h-[25vw]">
+              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.3vw] xl:text-[1.56vw] text-center">
                 Создание своего аккаунта
                 <br />и выбор роли
               </p>
-              <img src={account} alt="" className="w-[5vw] md:w-[3vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1vw] xl:mt-[0.52vw]" />
+              <img src={account} alt="" className="w-[5vw] md:w-[4vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1.5vw] xl:mt-[0.52vw]" />
             </div>
             <div className="flex-1 flex flex-col items-center justify-center border-b-[1px] border-primary">
-              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.5vw] xl:text-[1.56vw] text-center">
+              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.7vw] xl:text-[1.56vw] text-center">
                 Управление личными данными
               </p>
-              <img src={data} alt="" className="w-[5vw] md:w-[3vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1vw] xl:mt-[0.52vw]" />
+              <img src={data} alt="" className="w-[5vw] md:w-[4vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1.5vw] xl:mt-[0.52vw]" />
             </div>
             <div className="flex-1 flex flex-col items-center justify-center">
-              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.5vw] xl:text-[1.56vw] text-center">
+              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.7vw] xl:text-[1.56vw] text-center">
                 Добавление пользователей в семью
               </p>
-              <img src={family} alt="" className="w-[5vw] md:w-[3vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1vw] xl:mt-[0.52vw]" />
+              <img src={family} alt="" className="w-[5vw] md:w-[4vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1.5vw] xl:mt-[0.52vw]" />
             </div>
           </div>
         </div>
@@ -88,17 +88,17 @@ const Functions = () => {
         <div className="flex flex-col border-[1px] border-primary rounded-[3vw] md:rounded-[1.5vw] xl:rounded-[1vw] w-full md:w-[30vw] xl:w-[22.66vw]">
           <div className="w-full bg-primary text-stroke flex items-center justify-center
             border-[1px] border-primary
-            h-[12vw] md:h-[8vw] xl:h-[5.16vw]
+            h-[12vw] md:h-[12vw] xl:h-[5.16vw]
             rounded-t-[3vw] md:rounded-t-[1.5vw] xl:rounded-t-[1vw]
             shadow-[0_0.21vw_0.21vw_0_rgba(0,0,0,0.25)]"
           >
-            <p className="font-tenor text-center text-[4vw] md:text-[2.5vw] xl:text-[1.2vw]">
+            <p className="font-tenor text-center text-[4vw] md:text-[3vw] xl:text-[1.2vw]">
               Семейный ассистент
             </p>
           </div>
-          <div className="flex flex-col h-[60vw] md:h-[40vw] xl:h-[25.68vw]">
-            <div className="flex-1 flex flex-col items-center justify-center border-b-[1px] border-primary">
-              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.5vw] xl:text-[1.56vw] text-center">
+          <div className="flex flex-col h-[60vw] md:h-[60vw] xl:h-[25.68vw]">
+            <div className="flex-1 flex flex-col items-center justify-center border-b-[1px] border-primary md:h-[25vw]">
+              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.3vw] xl:text-[1.56vw] text-center">
                 Подскажет в выборе члена
                 <br />
                 семьи на определенную
@@ -107,13 +107,13 @@ const Functions = () => {
               </p>
             </div>
             <div className="flex-1 flex flex-col items-center justify-center">
-              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.5vw] xl:text-[1.56vw] text-center">
+              <p className="font-ysabeau text-black text-[3.5vw] md:text-[2.7vw] xl:text-[1.56vw] text-center">
                 Адаптируется
                 <br />
                 под каждого <br />
                 из вас
               </p>
-              <img src={ai} alt="" className="w-[5vw] md:w-[3vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1vw] xl:mt-[0.52vw]" />
+              <img src={ai} alt="" className="w-[5vw] md:w-[4vw] xl:w-[1.93vw] mt-[2vw] md:mt-[1.5vw] xl:mt-[0.52vw]" />
             </div>
           </div>
         </div>
