@@ -20,14 +20,14 @@ const InfoBlock = () => {
         rounded-bl-[15vw] md:rounded-bl-[10vw] xl:rounded-bl-[7.5vw]
         rounded-br-[15vw] md:rounded-br-[10vw] xl:rounded-br-[7.5vw]
         py-12 md:py-8 xl:py-0
-        h-auto md:h-[65vw] xl:h-[59vw]
+        h-auto md:h-[68vw] xl:h-[59vw]
         gap-8 md:gap-[4vw] xl:gap-[5.7vw]"
       >
         <img
           src={phone_colling}
           alt="phone with colling by happy family"
           className="object-cover
-          w-[80vw] md:w-[45vw] xl:w-[33.75vw]"
+          w-[80vw] md:w-[42vw] xl:w-[33.75vw]"
         />
         <div className="flex flex-col items-center md:items-start justify-start px-6 md:px-0">
           <h2
