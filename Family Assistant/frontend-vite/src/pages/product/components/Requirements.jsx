@@ -6,7 +6,6 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 const StarRating = ({ rating = 0 }) => {
   const stars = [0, 1, 2, 3, 4];
-  console.log('StarRating получил рейтинг:', rating);
   
   return (
     <div className="flex gap-[0.89vw] mt-[1.04vw]">
@@ -37,12 +36,19 @@ const StarRating = ({ rating = 0 }) => {
   );
 };
 
-const DownloadChart = ({ data }) => {
-  console.log('DownloadChart получил данные:', data);
-  const chartData = data.map(item => ({
-    date: new Date(item.date).toLocaleDateString('ru-RU'),
-    downloads: Number(item.kolvo)
+const DownloadChart = ({ data = [] }) => {
+  const chartData = (data || []).map(item => ({
+    date: item?.date ? new Date(item.date).toLocaleDateString('ru-RU') : 'Нет даты',
+    downloads: Number(item?.kolvo || 0)
   }));
+
+  if (!chartData.length) {
+    return (
+      <div className="w-full h-[20vw] mt-[2vw] flex items-center justify-center font-ysabeau text-[2vw]">
+        Нет данных для отображения
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-[20vw] mt-[2vw]">
@@ -64,28 +70,23 @@ const Requirements = () => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [downloadStats, setDownloadStats] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const ratingResponse = await $host.get("api/ratings/get-average-rating");
-        console.log('Получены данные рейтинга:', ratingResponse.data);
-        
-        const { average } = ratingResponse.data;
-        if (average) {
-          const numericRating = Number(average);
-          console.log('Преобразованный рейтинг:', numericRating);
-          setRating(numericRating);
-        } else {
-          console.log('Нет данных о среднем рейтинге');
-          setRating(0);
-        }
+        const { average } = ratingResponse.data || {};
+        setRating(Number(average) || 0);
 
         const downloadResponse = await $host.get("api/dowloadCount/get-downloadcount");
-        console.log('Получены данные о скачиваниях:', downloadResponse.data);
-        setDownloadStats(downloadResponse.data);
+        setDownloadStats(downloadResponse.data || []);
+        setError(null);
       } catch (error) {
         console.error("Ошибка при загрузке данных:", error);
+        setError("Ошибка при загрузке данных");
+        setRating(0);
+        setDownloadStats([]);
       }
     };
 
@@ -93,21 +94,24 @@ const Requirements = () => {
   }, []);
 
   const handleDownload = async () => {
+    if (isDownloading) return;
+    
     setIsDownloading(true);
 
     setTimeout(async () => {
-      setIsDownloading(false);
-      setShowRatingModal(true);
-
       try {
         const today = new Date().toISOString().split("T")[0];
         await $host.post("api/dowloadCount/incr-download", { date: today });
 
         const updatedData = await $host.get("api/dowloadCount/get-downloadcount");
-        console.log('Обновленные данные о скачиваниях:', updatedData.data);
-        setDownloadStats(updatedData.data);
+        setDownloadStats(updatedData.data || []);
+        setError(null);
       } catch (error) {
         console.error("Ошибка при обновлении скачиваний:", error);
+        setError("Ошибка при обновлении данных");
+      } finally {
+        setIsDownloading(false);
+        setShowRatingModal(true);
       }
     }, 5000);
   };
@@ -181,7 +185,7 @@ const Requirements = () => {
             Средняя оценка приложения:
           </p>
           <p className="font-tenor text-primary text-[6vw] md:text-[4vw] xl:text-[3.33vw] mt-[4vw] md:mt-[2.55vw]">
-            {rating}
+            {rating.toFixed(1)}
           </p>
           <StarRating rating={rating} />
         </div>
@@ -191,9 +195,15 @@ const Requirements = () => {
         <h3 className="font-tenor text-primary text-[4vw] md:text-[3vw] xl:text-[2vw] mb-[2vw] md:mb-[1vw]">
           Статистика скачиваний
         </h3>
-        <div className="h-[40vw] md:h-[20vw]">
-          <DownloadChart data={downloadStats} />
-        </div>
+        {error ? (
+          <div className="h-[40vw] md:h-[20vw] flex items-center justify-center font-ysabeau text-[2vw] text-red-500">
+            {error}
+          </div>
+        ) : (
+          <div className="h-[40vw] md:h-[20vw]">
+            <DownloadChart data={downloadStats} />
+          </div>
+        )}
       </div>
 
       {showRatingModal && <Mark onClose={handleCloseRatingModal} />}
