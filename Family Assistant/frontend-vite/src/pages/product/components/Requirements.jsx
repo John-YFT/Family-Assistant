@@ -43,11 +43,15 @@ const DownloadChart = ({ data = [] }) => {
     type: typeof data
   });
 
-  const safeData = Array.isArray(data) ? data : [];
+  const safeData = Array.isArray(data) ? data.filter(item => 
+    item && typeof item === 'object' && 
+    'date' in item && 
+    'kolvo' in item
+  ) : [];
   
   const chartData = safeData.map(item => ({
-    date: item?.date ? new Date(item.date).toLocaleDateString('ru-RU') : 'Нет даты',
-    downloads: Number(item?.kolvo || 0)
+    date: new Date(item.date).toLocaleDateString('ru-RU'),
+    downloads: Number(item.kolvo)
   }));
 
   console.log('DownloadChart преобразованные данные:', {
@@ -95,14 +99,18 @@ const Requirements = () => {
           status: ratingResponse.status
         });
 
-        const { average } = ratingResponse?.data || {};
+        const average = ratingResponse?.data?.average;
+        const numericRating = typeof average === 'string' || typeof average === 'number' 
+          ? Number(average) 
+          : 0;
+
         console.log('Извлеченный рейтинг:', {
           average,
           type: typeof average,
-          numberValue: Number(average)
+          numberValue: numericRating
         });
 
-        setRating(Number(average) || 0);
+        setRating(numericRating);
 
         const downloadResponse = await $host.get("api/dowloadCount/get-downloadcount");
         console.log('Сырой ответ скачиваний:', {
@@ -112,8 +120,15 @@ const Requirements = () => {
           isArray: Array.isArray(downloadResponse?.data)
         });
 
-        const downloadData = downloadResponse?.data;
-        setDownloadStats(Array.isArray(downloadData) ? downloadData : []);
+        const downloadData = Array.isArray(downloadResponse?.data) 
+          ? downloadResponse.data.filter(item => 
+              item && typeof item === 'object' && 
+              'date' in item && 
+              'kolvo' in item
+            )
+          : [];
+
+        setDownloadStats(downloadData);
         setError(null);
       } catch (error) {
         console.error("Подробная ошибка при загрузке данных:", {
@@ -154,8 +169,15 @@ const Requirements = () => {
           isArray: Array.isArray(updatedData?.data)
         });
 
-        const newDownloadData = updatedData?.data;
-        setDownloadStats(Array.isArray(newDownloadData) ? newDownloadData : []);
+        const newDownloadData = Array.isArray(updatedData?.data) 
+          ? updatedData.data.filter(item => 
+              item && typeof item === 'object' && 
+              'date' in item && 
+              'kolvo' in item
+            )
+          : [];
+
+        setDownloadStats(newDownloadData);
         setError(null);
       } catch (error) {
         console.error("Подробная ошибка при обновлении скачиваний:", {
