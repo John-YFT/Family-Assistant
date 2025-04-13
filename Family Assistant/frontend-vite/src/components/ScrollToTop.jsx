@@ -33,14 +33,22 @@ const ScrollToTop = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-[2.08vw] right-[2.08vw] bg-primary hover:bg-primary/90 
-                   text-white w-[4.17vw] h-[4.17vw] rounded-full 
-                   flex items-center justify-center transition-all 
-                   duration-300 z-50 border-[0.2vw] border-stroke shadow-xl"
+          className="fixed 
+            bottom-6 right-6 md:bottom-[3vw] md:right-[3vw] xl:bottom-[2.08vw] xl:right-[2.08vw] 
+            bg-primary hover:bg-primary/90 
+            text-white 
+            w-14 h-14 md:w-[6vw] md:h-[6vw] xl:w-[4.17vw] xl:h-[4.17vw] 
+            rounded-full 
+            flex items-center justify-center 
+            transition-all duration-300 
+            z-50 
+            border-2 md:border-[0.3vw] xl:border-[0.2vw] border-stroke 
+            shadow-xl
+            hover:scale-110 active:scale-95"
           aria-label="Прокрутить вверх"
         >
           <svg
-            className="w-[2.5vw] h-[2.5vw]"
+            className="w-8 h-8 md:w-[3.5vw] md:h-[3.5vw] xl:w-[2.5vw] xl:h-[2.5vw]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
