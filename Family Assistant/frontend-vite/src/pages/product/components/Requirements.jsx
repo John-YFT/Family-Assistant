@@ -37,7 +37,9 @@ const StarRating = ({ rating = 0 }) => {
 };
 
 const DownloadChart = ({ data = [] }) => {
-  const chartData = (data || []).map(item => ({
+  const safeData = Array.isArray(data) ? data : [];
+  
+  const chartData = safeData.map(item => ({
     date: item?.date ? new Date(item.date).toLocaleDateString('ru-RU') : 'Нет даты',
     downloads: Number(item?.kolvo || 0)
   }));
@@ -76,11 +78,12 @@ const Requirements = () => {
     const fetchData = async () => {
       try {
         const ratingResponse = await $host.get("api/ratings/get-average-rating");
-        const { average } = ratingResponse.data || {};
+        const { average } = ratingResponse?.data || {};
         setRating(Number(average) || 0);
 
         const downloadResponse = await $host.get("api/dowloadCount/get-downloadcount");
-        setDownloadStats(downloadResponse.data || []);
+        const downloadData = downloadResponse?.data;
+        setDownloadStats(Array.isArray(downloadData) ? downloadData : []);
         setError(null);
       } catch (error) {
         console.error("Ошибка при загрузке данных:", error);
@@ -104,7 +107,8 @@ const Requirements = () => {
         await $host.post("api/dowloadCount/incr-download", { date: today });
 
         const updatedData = await $host.get("api/dowloadCount/get-downloadcount");
-        setDownloadStats(updatedData.data || []);
+        const newDownloadData = updatedData?.data;
+        setDownloadStats(Array.isArray(newDownloadData) ? newDownloadData : []);
         setError(null);
       } catch (error) {
         console.error("Ошибка при обновлении скачиваний:", error);
